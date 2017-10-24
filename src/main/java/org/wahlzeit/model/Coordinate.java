@@ -10,22 +10,22 @@ public class Coordinate {
 	/**
 	 * Spheric north coordinate in degree, for southern coordinates the value is negative
 	 */
-	private double north;
+	private final double north;
 	
 	/**
 	 * Spheric east coordinate in degree, for western coordinates the value is negative
 	 */
-	private double east;
+	private final double east;
 	
 	/**
 	 * Spheric north coordinate in radians, for southern coordinates the value is negative
 	 */
-	private double northRadians;
+	private final double northRadians;
 	
 	/**
 	 * Spheric east coordinate in radians, for western coordinates the value is negative
 	 */
-	private double eastRadians;
+	private final double eastRadians;
 	
 	/**
 	 * @methodtype constructor

@@ -16,17 +16,6 @@ public class Location {
 	 */
 	private Coordinate coordinate;
 	
-	/**
-	 * @methodtype constructor
-	 * @param name, name of the Location;
-	 * @param north, spherical north coordinate in degree, negative if south;
-	 * @param east,	 spherical east coordinate in degree, negative if west;
-	 */
-	public Location(String name, double north, double west){
-		this.name = name;
-		this.coordinate = new Coordinate(north,west);
-		
-	}
 	
 	/**
 	 * @methodtype constructor
@@ -36,6 +25,25 @@ public class Location {
 	public Location (String name, Coordinate coordinate){
 		this.name = name;
 		this.coordinate = coordinate;
+	}
+	
+	/**
+	 * @methodtype constructor
+	 * @param name, name of the Location;
+	 * @param north, spherical north coordinate in degree, negative if south;
+	 * @param east,	 spherical east coordinate in degree, negative if west;
+	 */
+	public Location(String name, double north, double west){
+		this(name, new Coordinate(north,west));
+	}
+	
+	/**
+	 * @methodtype constructor
+	 * creates a location without coordinates
+	 * @param name name of the location
+	 */
+	public Location(String name){
+		this(name,null);
 	}
 	
 	@Override
@@ -55,10 +63,16 @@ public class Location {
 			return false;
 		}
 		
-		if(this.coordinate.distanceTo(toCompare.coordinate) > 1.0){
+		if(this.coordinate == null && toCompare.coordinate != null ||
+		   this.coordinate != null && toCompare.coordinate == null ){
 			return false;
 		}
-		
+		//because of the if above this.coordinate != null  implies toCompare.coordinate != null
+		if(this.coordinate != null){
+			if(this.coordinate.distanceTo(toCompare.coordinate) > 1.0){
+				return false;
+			}
+		}
 		return true;
 	}
 	

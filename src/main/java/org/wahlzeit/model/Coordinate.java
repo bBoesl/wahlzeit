@@ -46,8 +46,13 @@ public class Coordinate {
 	 * @methodtype boolean-query
 	 * Two coordinates will be treated as equals 
 	 * if and only if both coordinates are the same
+	 * is forwarded to isEqual(), because of the assignment...
 	 */
 	public boolean equals(Object o){
+		return isEqual(o);
+	}
+	
+	private boolean isEqual(Object o){
 		if(!(o instanceof Coordinate)){
 			return false;
 		}

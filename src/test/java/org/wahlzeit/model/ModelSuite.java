@@ -19,7 +19,9 @@ import org.wahlzeit.services.LogBuilderTest;
 	TagsTest.class,
 	UserStatusTest.class,
 	ValueTest.class,
-	org.wahlzeit.model.persistence.PersistenceSuite.class
+	org.wahlzeit.model.persistence.PersistenceSuite.class,
+	PhotoFactoryTest.class,
+	DrumPhotoFactoryTest.class
 })
 public class ModelSuite {
 

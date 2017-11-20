@@ -72,8 +72,8 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 *
 	 */
-	public static final PhotoManager getInstance() {
-		return instance;
+	public static PhotoManager getInstance() {
+		return DrumPhotoManager.getInstance();
 	}
 
 	/**

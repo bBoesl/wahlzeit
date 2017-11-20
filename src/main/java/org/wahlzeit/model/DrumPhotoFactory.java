@@ -30,12 +30,12 @@ public class DrumPhotoFactory extends PhotoFactory {
 		super();
 	}
 	
-	public DrumPhoto createDrumPhoto(){
+	public DrumPhoto createPhoto(){
 		return new DrumPhoto();
 	}
 	
 	
-	public DrumPhoto createDrumPhoto(PhotoId id){
+	public DrumPhoto createPhoto(PhotoId id){
 		return new DrumPhoto( id);
 	}
 	

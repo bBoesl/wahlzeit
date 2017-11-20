@@ -16,9 +16,9 @@ public class DrumPhotoFactoryTest extends PhotoFactoryTest {
 	
 	@Test
 	public void testCreateDrumPhoto(){
-		assertTrue(drumFactory.createDrumPhoto() != null);
+		assertTrue(drumFactory.createPhoto() != null);
 		PhotoId id = PhotoId.getNextId();
-		Photo photo = drumFactory.createDrumPhoto(id);
+		Photo photo = drumFactory.createPhoto(id);
 		assertTrue(photo != null);
 		assertTrue(photo.getId() == id);
 		

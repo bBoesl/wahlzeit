@@ -5,6 +5,7 @@ import org.junit.Test;
 
 public class LocationTest {
 
+	final double earthRadius =6378.388;
 	@Test
 	public void testEqualsWithoutCoords() {
 		Location location1 = new Location("home");
@@ -18,7 +19,7 @@ public class LocationTest {
 	
 	@Test
 	public void testEqualsMixedCoords(){
-		Location location1 = new Location("home", new Coordinate(0.0 , 0.0 ) );
+		Location location1 = new Location("home", new SphericCoordinate(0.0 , 0.0 ,earthRadius) );
 		Location location2 = new Location("home");
 		assertFalse(location1.equals(location2));
 		assertFalse(location2.equals(location1));
@@ -26,7 +27,7 @@ public class LocationTest {
 	
 	@Test
 	public void testEqualsWithCoords(){
-		Coordinate zeroZero = new Coordinate(0.0, 0.0);
+		SphericCoordinate zeroZero = new SphericCoordinate(0.0, 0.0,earthRadius);
 		Location location1 = new Location("home", zeroZero );
 		Location location2 = new Location("home", zeroZero );
 		assertTrue(location1.equals(location2));
@@ -36,11 +37,11 @@ public class LocationTest {
 		assertFalse(location1.equals(location2));
 		assertFalse(location2.equals(location1));
 		
-		location2 = new Location("home", new Coordinate(0.0, 0.0));
+		location2 = new Location("home", new SphericCoordinate(0.0, 0.0,earthRadius));
 		assertTrue(location1.equals(location2));
 		assertTrue(location2.equals(location1));
 		
-		location2 = new Location("home", new Coordinate(0.0, 0.0000000000001));
+		location2 = new Location("home", new SphericCoordinate(0.0, 0.0000000000001,earthRadius));
 		assertTrue(location1.equals(location2));
 		assertTrue(location2.equals(location1));
 	}

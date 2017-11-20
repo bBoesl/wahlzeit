@@ -27,15 +27,6 @@ public class Location {
 		this.coordinate = coordinate;
 	}
 	
-	/**
-	 * @methodtype constructor
-	 * @param name, name of the Location;
-	 * @param north, spherical north coordinate in degree, negative if south;
-	 * @param east,	 spherical east coordinate in degree, negative if west;
-	 */
-	public Location(String name, double north, double west){
-		this(name, new Coordinate(north,west));
-	}
 	
 	/**
 	 * @methodtype constructor
@@ -69,7 +60,7 @@ public class Location {
 		}
 		//because of the if above this.coordinate != null  implies toCompare.coordinate != null
 		if(this.coordinate != null){
-			if(this.coordinate.distanceTo(toCompare.coordinate) > 1.0){
+			if(this.coordinate.getDistance(toCompare.coordinate) > 1.0){
 				return false;
 			}
 		}

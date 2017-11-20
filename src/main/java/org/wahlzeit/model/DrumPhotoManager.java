@@ -7,13 +7,17 @@ import java.util.logging.Logger;
  */
 public class DrumPhotoManager extends PhotoManager {
 	
-	protected static final PhotoManager instance = new DrumPhotoManager();
+	protected static final DrumPhotoManager instance = new DrumPhotoManager();
 	
 	private static final Logger log = Logger.getLogger(DrumPhotoManager.class.getName());
 
 
 	public DrumPhotoManager() {
 		photoTagCollector = DrumPhotoFactory.getInstance().createPhotoTagCollector();
+	}
+	
+	public static DrumPhotoManager getInstance(){
+		return instance;
 	}
 	
 	/**

@@ -11,7 +11,7 @@ import org.wahlzeit.services.LogBuilderTest;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
 	AccessRightsTest.class,
-	CoordinateTest.class,
+	SphericCoordinateTest.class,
 	FlagReasonTest.class,
 	GenderTest.class,
 	LocationTest.class,

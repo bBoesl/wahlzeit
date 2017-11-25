@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class LocationTest {
-
+	/*
 	@Test
 	public void testEqualsWithoutCoords() {
 		Location location1 = new Location("home");
@@ -44,5 +44,6 @@ public class LocationTest {
 		assertTrue(location1.equals(location2));
 		assertTrue(location2.equals(location1));
 	}
+	*/
 
 }

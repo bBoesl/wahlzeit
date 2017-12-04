@@ -12,48 +12,61 @@ public class SphericCoordinate extends AbstractCoordinate{
 	/**
 	 * Spheric north coordinate in degree, for southern coordinates the value is negative
 	 */
-	public final double longitude;
+	public final double latitude;
 	
 	/**
 	 * Spheric east coordinate in degree, for western coordinates the value is negative
 	 */
-	public final double latitude;
+	public final double longitude;
 	
 	
 	/**
 	 * 
 	 */
 	public final double radius;
-	/**
-	 * Spheric north coordinate in radians, for southern coordinates the value is negative
-	 */
-	public final double northRadians;
 	
-	/**
-	 * Spheric east coordinate in radians, for western coordinates the value is negative
-	 */
-	public final double eastRadians;
 	
 	/**
 	 * @methodtype constructor
 	 * Constructor for Spheric Coordinates,
 	 * @param longitude  in degree, negative for southern
 	 * @param latitude in degree, negativ for southern;
+	 * 
+	 *@pre:longitude and latitude are between -Pi and Pi, radius > 0  
 	 */
 	public SphericCoordinate(double longitude, double latitude, double radius){
-		this.longitude = longitude;
-		this.latitude  = latitude;
+		this.latitude = longitude;
+		this.longitude  = latitude;
 		this.radius = radius;
-		northRadians = (longitude / 180) * Math.PI;
-		eastRadians  = (latitude / 180) * Math.PI;
+		assertInvariant();
+	
 		
 	}
 	
-	public CartesianCoordinate asCartesianCoordinate(){
-		double x = radius* Math.sin(longitude)* Math.cos(latitude);
-		double y = radius* Math.sin(longitude)* Math.sin(latitude);
-		double z = radius*Math.cos(longitude);
+	@Override
+	protected void assertInvariant(){
+		myAssertState( - Math.PI < longitude  && longitude < Math.PI);
+		myAssertState( - Math.PI < latitude  && latitude < Math.PI);
+		myAssertState( radius >= 0);
+	}
+	
+	
+	private CartesianCoordinate doAsCartesianCoordinate(){
+		double x = radius* Math.sin(latitude)* Math.cos(longitude);
+		double y = radius* Math.sin(latitude)* Math.sin(longitude);
+		double z = radius*Math.cos(latitude);
 		return new CartesianCoordinate(x,y,z);
+	} 
+	
+	public CartesianCoordinate asCartesianCoordinate(){
+		//no preconditions besides the invariant, even that isnt needet, because everything is final.
+		assertInvariant();
+		CartesianCoordinate ret =  doAsCartesianCoordinate();
+		//postCondition
+		myAssertError(ret != null);
+		myAssertError(ret.equals(this));
+		assertInvariant();
+		return ret;
 	}
 	
 	@Override
@@ -67,20 +80,21 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * @methodtype get
 	 */
 	public double getLongitude(){
-		return longitude;
+		return latitude;
 	}
 	
 	/**
 	 * @methodtype set
 	 */
 	public double getlatitude(){
-		return latitude;
+		return longitude;
 	}
 	
 	public double getRadius(){
 		return radius;
 	}
-
+	
+	
 
 	
 

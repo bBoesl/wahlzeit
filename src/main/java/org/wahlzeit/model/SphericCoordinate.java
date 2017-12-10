@@ -34,20 +34,20 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * 
 	 *@pre:longitude and latitude are between -Pi and Pi, radius > 0  
 	 */
-	public SphericCoordinate(double longitude, double latitude, double radius){
-		this.latitude = longitude;
-		this.longitude  = latitude;
+	public SphericCoordinate(double latitude, double longitude, double radius){
+		this.latitude = latitude;
+		this.longitude  = longitude;
 		this.radius = radius;
-		assertInvariant();
+		assertInvariant("Invalid constructor arguements of Spheric Coordiante");
 	
 		
 	}
 	
 	@Override
-	protected void assertInvariant(){
-		myAssertState( - Math.PI < longitude  && longitude < Math.PI);
-		myAssertState( - Math.PI < latitude  && latitude < Math.PI);
-		myAssertState( radius >= 0);
+	protected void assertInvariant(String message){
+		myAssertState( - Math.PI < longitude  && longitude < Math.PI, message);
+		myAssertState( - Math.PI < latitude  && latitude < Math.PI,message);
+		myAssertState( radius >= 0, message);
 	}
 	
 	
@@ -60,12 +60,12 @@ public class SphericCoordinate extends AbstractCoordinate{
 	
 	public CartesianCoordinate asCartesianCoordinate(){
 		//no preconditions besides the invariant, even that isnt needet, because everything is final.
-		assertInvariant();
+		assertInvariant("SphericCoordinate state is broken");
 		CartesianCoordinate ret =  doAsCartesianCoordinate();
 		//postCondition
-		myAssertError(ret != null);
-		myAssertError(ret.equals(this));
-		assertInvariant();
+		myAssertError(ret != null, "asCartesianCoordinate() returned null");
+		myAssertError(ret.equals(this),"asCartesianCoordinate() returned something not equal" );
+		assertInvariant("SphericCoordinate state is broken after asCartesianCoordinate()");
 		return ret;
 	}
 	

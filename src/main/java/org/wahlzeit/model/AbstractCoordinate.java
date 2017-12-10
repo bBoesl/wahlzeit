@@ -8,24 +8,24 @@ public abstract class AbstractCoordinate implements Coordinate {
 	/**
 	 * Asserts class invaraiants.
 	 */
-	protected abstract void assertInvariant();
+	protected abstract void assertInvariant(String message);
 	
-	protected void myAssertArg(boolean b) {
+	protected void myAssertArg(boolean b, String message) {
 		if(!b){
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(message);
 		}
 		
 	}
-	protected void myAssertError(boolean b) {
+	protected void myAssertError(boolean b,String message) {
 		if(!b){
-			throw new Error();
+			throw new Error(message);
 		}
 		
 	}
 	
-	protected void myAssertState(boolean b){
+	protected void myAssertState(boolean b, String message){
 		if(! b){
-			throw new IllegalStateException();
+			throw new IllegalStateException(message);
 		}
 	}
 	
@@ -40,10 +40,11 @@ public abstract class AbstractCoordinate implements Coordinate {
 	 * @param coordinate : the coordinate to compute the distance to
 	 */
 	public double getDistance(Coordinate coordinate){
-		myAssertArg(coordinate != null);
-		assertInvariant();
+		myAssertArg(coordinate != null, "called getDistance() with null");
+		assertInvariant("Coordinate state is broken");
 		double ret = this.getDistance(coordinate);
-		assertInvariant();
+		myAssertError(ret >= 0, "getDistance returned negative results");
+		assertInvariant("coordinate state is broken after getDistance()");
 		return ret;
 	}
 	
@@ -64,10 +65,11 @@ public abstract class AbstractCoordinate implements Coordinate {
 	 *            Distance
 	 */
 	public double getCartesianDistance(Coordinate coordinate){
-		assert(coordinate != null);
-		assertInvariant();
+		myAssertArg(coordinate != null, "called getCartesianDistance with null");
+		assertInvariant("Coordinate state is broken");
 		double ret = this.doGetCartesianDistance(coordinate);
-		assertInvariant();
+		myAssertError(ret >= 0,"getCartesiandDistance() returned negative result");
+		assertInvariant("Coordinate state is broken after getCartesianDistance()");
 		return ret;
 	}
 
@@ -79,10 +81,11 @@ public abstract class AbstractCoordinate implements Coordinate {
 	 * @return distance in Km
 	 */
 	public double getSphericDistance(Coordinate coordinate){
-		myAssertArg(coordinate != null);
-		assertInvariant();
+		myAssertArg(coordinate != null,"called getSphericDistance with null");
+		assertInvariant("Coordinate state is broken");
 		double ret = this.doGetSphericDistance(coordinate);
-		assertInvariant();
+		myAssertError(ret >= 0,"getSphericDistance() returned negative result");
+		assertInvariant("Coordinate state is broken after getSphericDistance()");
 		return ret;
 	}
 	

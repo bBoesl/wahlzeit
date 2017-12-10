@@ -9,14 +9,14 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		this.x = x;
 		this.y = y;
 		this.z = z;
-		assertInvariant();
+		assertInvariant("Invalid constructor arguements of Cartesian coodirnate");
 	}
 	
 	@Override
-	protected void assertInvariant() {
-		myAssertState(y != Double.NaN && y != Double.NEGATIVE_INFINITY && y != Double.POSITIVE_INFINITY);
-		myAssertState(y != Double.NaN && y != Double.NEGATIVE_INFINITY && y != Double.POSITIVE_INFINITY);
-		myAssertState(y != Double.NaN && y != Double.NEGATIVE_INFINITY && y != Double.POSITIVE_INFINITY);
+	protected void assertInvariant(String message) {
+		myAssertState(x != Double.NaN && x != Double.NEGATIVE_INFINITY && x != Double.POSITIVE_INFINITY, message);
+		myAssertState(y != Double.NaN && y != Double.NEGATIVE_INFINITY && y != Double.POSITIVE_INFINITY, message);
+		myAssertState(z != Double.NaN && z != Double.NEGATIVE_INFINITY && z != Double.POSITIVE_INFINITY, message);
 	}
 	
 	
@@ -29,11 +29,11 @@ public class CartesianCoordinate extends AbstractCoordinate{
 	}
 	
 	public SphericCoordinate asSphericCoordinate(){
-		assertInvariant();
+		assertInvariant("CartesianCoordinate state is broken");
 		SphericCoordinate ret = this.doAsSphericCoordinate();
-		myAssertError(ret != null);
-		myAssertError(ret.equals(this));
-		assertInvariant();
+		myAssertError(ret != null, "asSphericCoordinate returned null");
+		myAssertError(ret.equals(this), "asSphericCoordinate() returned somting not equals");
+		assertInvariant("CartesianCoordinate state is broken after asSphericCoordinate()");
 		return ret;
 	}
 	@Override

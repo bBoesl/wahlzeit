@@ -25,7 +25,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		double r = Math.sqrt( x*x + y*y + z*z);
 		double lat = Math.acos(z/r);
 		double lon = Math.atan2(y, x);
-		return new SphericCoordinate(lat,lon,r);
+		return (SphericCoordinate) getCoordinate(lat,lon,r,false);
 	}
 	
 	public SphericCoordinate asSphericCoordinate(){

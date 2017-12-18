@@ -2,6 +2,7 @@ package org.wahlzeit.model;
 
 
 public interface Coordinate {
+	public Coordinate getCoordinate(double x, double y,double z, boolean cartesian);
 	public SphericCoordinate asSphericCoordinate();
 	public CartesianCoordinate asCartesianCoordinate();
 	 	

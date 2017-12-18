@@ -1,9 +1,53 @@
 package org.wahlzeit.model;
 
+import java.util.Hashtable;
+
 public abstract class AbstractCoordinate implements Coordinate {
 	
 	private static final double EPSILON = 0.00001;
 
+	class Tupel{
+	
+		double x;
+		double y;
+		double z;
+		boolean cart;
+		
+		Tupel(double x,double y, double z, boolean cart){
+			this.x = x;
+			this.y = y;
+			this.z = z;
+			this.cart = cart;
+		}
+		
+		public boolean equals(Object o){
+			if(! (o instanceof Tupel))return false;
+			Tupel cast = (Tupel) o;
+			if(Math.abs(cast.x-  this.x) > EPSILON) return false;
+			if(Math.abs(cast.y - this.y )> EPSILON) return false;
+			if(Math.abs(cast.z - this.z )> EPSILON) return false;
+			if(cast.cart != this.cart)return false;
+			return true;
+		}
+		
+		public int hashCode(){
+			return this.toString().hashCode();
+		}
+		
+	}
+	private static Hashtable<Tupel, Coordinate> lookup = new Hashtable<Tupel,Coordinate>();
+	
+	public Coordinate getCoordinate(double x, double y,double z, boolean cartesian){
+		Tupel key = new Tupel(x,y,z, cartesian);
+		Coordinate ret = lookup.get(key);
+		if(ret == null){
+			ret = new CartesianCoordinate(x,y,z);
+			lookup.put(key, ret);
+			
+		}
+		return ret;
+	}
+	
 	
 	/**
 	 * Asserts class invaraiants.

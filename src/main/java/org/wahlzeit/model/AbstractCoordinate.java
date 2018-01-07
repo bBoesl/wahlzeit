@@ -2,6 +2,15 @@ package org.wahlzeit.model;
 
 import java.util.Hashtable;
 
+import org.wahlzeit.anonntations.PatternInstance;
+
+@PatternInstance(name = "FactoryMethod",
+participants = { Coordinate.class,
+				AbstractCoordinate.class,
+				CartesianCoordinate.class,
+				SphericCoordinate.class }
+	// Used to Create CoordinateInstaces to use them as ValueObjects
+)
 public abstract class AbstractCoordinate implements Coordinate {
 	
 	private static final double EPSILON = 0.00001;

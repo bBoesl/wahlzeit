@@ -20,6 +20,7 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.anonntations.PatternInstance;
 import org.wahlzeit.services.LogBuilder;
 
 import java.util.logging.Logger;
@@ -27,6 +28,9 @@ import java.util.logging.Logger;
 /**
  * An Abstract Factory for creating photos and related objects.
  */
+@PatternInstance(name = "AbstractFactory", participants = { PhotoFactory.class, DrumPhotoFactory.class }
+	//used to make the implementation of the specific PhotoFactory easy. 
+)
 public class PhotoFactory {
 
 	private static final Logger log = Logger.getLogger(PhotoFactory.class.getName());

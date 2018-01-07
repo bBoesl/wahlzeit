@@ -2,9 +2,15 @@ package org.wahlzeit.model;
 
 import java.util.logging.Logger;
 
+import org.wahlzeit.anonntations.PatternInstance;
+
 /**
  * 
  */
+@PatternInstance(name = "Singelton", participants = { DrumPhotoManager.class }
+	//Used to not instantiate unnecessary ManagerInstances.
+)
+
 public class DrumPhotoManager extends PhotoManager {
 	
 	protected static final PhotoManager instance = new DrumPhotoManager();

@@ -2,6 +2,7 @@ package org.wahlzeit.model;
 
 import java.util.logging.Logger;
 
+import org.wahlzeit.anonntations.PatternInstance;
 import org.wahlzeit.services.LogBuilder;
 
 /**
@@ -10,6 +11,9 @@ import org.wahlzeit.services.LogBuilder;
  * not a very elegant way to do this, but it works.. 
  *
  */
+@PatternInstance(name = "Singelton", participants = { DrumPhotoFactory.class }
+	// used to not create unnecessary Factory Instances  
+)
 public class DrumPhotoFactory extends PhotoFactory {
 	
 	private static final Logger log = Logger.getLogger(PhotoFactory.class.getName());

@@ -1,5 +1,7 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.anonntations.PatternInstance;
+
 
 public interface Coordinate {
 	public Coordinate getCoordinate(double x, double y,double z, boolean cartesian);

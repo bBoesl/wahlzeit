@@ -20,6 +20,7 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.anonntations.PatternInstance;
 import org.wahlzeit.services.ObjectManager;
 
 import java.util.Arrays;
@@ -32,6 +33,9 @@ import java.util.Map;
 /**
  * The photo case manager provides access to and manages persistent photo cases.
  */
+@PatternInstance(name = "Singelton", participants = { PhotoCaseManager.class }
+	//Used to not instantiate unnecessary ManagerInstances.
+)
 public class PhotoCaseManager extends ObjectManager {
 
 	/**

@@ -6,6 +6,8 @@ import com.googlecode.objectify.ObjectifyService;
 import org.wahlzeit.model.Administrator;
 import org.wahlzeit.model.Client;
 import org.wahlzeit.model.DrumPhoto;
+import org.wahlzeit.model.DrumType;
+import org.wahlzeit.model.Drumset;
 import org.wahlzeit.model.Globals;
 import org.wahlzeit.model.Guest;
 import org.wahlzeit.model.Moderator;
@@ -37,6 +39,8 @@ public class OfyService {
 		factory().register(PhotoCase.class);
 		factory().register(ImageWrapper.class);
 		factory().register(DrumPhoto.class);
+		factory().register(Drumset.class);
+		factory().register(DrumType.class);
 	}
 
 	public static Objectify ofy() {

@@ -39,8 +39,8 @@ public class OfyService {
 		factory().register(PhotoCase.class);
 		factory().register(ImageWrapper.class);
 		factory().register(DrumPhoto.class);
-		factory().register(Drumset.class);
-		factory().register(DrumType.class);
+		//factory().register(Drumset.class);
+		//factory().register(DrumType.class);
 	}
 
 	public static Objectify ofy() {

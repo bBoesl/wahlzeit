@@ -1,5 +1,6 @@
 package org.wahlzeit.model;
 
+import com.googlecode.objectify.annotation.Container;
 import com.googlecode.objectify.annotation.Entity;
 
 @Entity
@@ -7,6 +8,7 @@ public class DrumPhoto extends Photo {
 	/**
 	 * 
 	 */
+	@Container
 	private Drumset set;
 	
 	public DrumPhoto(){

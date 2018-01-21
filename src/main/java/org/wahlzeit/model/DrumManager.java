@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import org.wahlzeit.anonntations.PatternInstance;
@@ -19,7 +20,7 @@ public class DrumManager extends ObjectManager {
 	
 	protected static final DrumManager instance = new DrumManager();
 
-	private static final Logger log = Logger.getLogger(PhotoManager.class.getName());
+	private static final Logger log = Logger.getLogger(DrumManager.class.getName());
 	
 	protected Map<Integer, Drumset> DrumCache = new HashMap<Integer, Drumset>();
 	protected Map<Integer, DrumType> TypeCache = new HashMap<Integer,DrumType>();
@@ -72,11 +73,15 @@ public class DrumManager extends ObjectManager {
 	}
 	
 	public void saveAllSets(){
-		DrumCache.forEach((id,set) -> saveSet(set));
+		for(Entry<Integer, Drumset> e : DrumCache.entrySet()){
+			saveSet(e.getValue());
+		}
 	}
 	
 	public void saveAllTypes(){
-		TypeCache.forEach((id,type) -> saveType(type));
+		for(Entry<Integer,DrumType> e: TypeCache.entrySet()){
+			saveType(e.getValue());
+		}
 	}
 	
 	
